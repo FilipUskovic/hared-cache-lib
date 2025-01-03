@@ -5,3 +5,8 @@
        za keširanje (Caffeine/Redis helperi, composite cache manager, event listeneri…).
      * Nije mikroservis – ne pokreće se zasebno, nema endpoint-e, nema bazu, nema Docker.
    
+
+kreiroa sam samo libray standalone libraray i puskao ga kao lokalni
+./gradlew clean build publishToMavenLocal
+
+./gradlew publishToMavenLocal
