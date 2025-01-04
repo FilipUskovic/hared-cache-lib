@@ -26,3 +26,16 @@ kreiroa sam samo libray standalone libraray i puskao ga kao lokalni
    * Smanjejne dupliciranja koda - svi "cache" pozivi koriste istu metodu monitorCacheOperation za pracenje poziva
    * lako dodati novu logiku samo dodati novo u CacheMetricsService
 
+    Caffeine cache
+  1. Konfiguracije cache.a CaffeineCacheConfigurationHelper stvara CustomCaffeineCacheManager
+  2. Praćenje Događaja -> CustomCaffeineCacheManager korsiti removalListener za pracenje eviction događaja i šalje ih cacheEventListeneru
+  3. Metrike -> MeterRegistry se brine za pracenje metrika i biljezi hit miss viction
+  4. Strategije -> Enum CacheStrategy definira razlicite strategije 
+
+  prednosti:
+  * centralizirano upravljanje cache metrika -> sve cache operacije (get, put, eviciton) se prate kroz Micrometer
+  * Modularnost i proširivst -> lako dodati nove CcaesStrategije u enum 
+  * Event lISTENER -> pracenje i logiranje evicitona pruza nam dodadni uvid u cache performance
+
+
+  
