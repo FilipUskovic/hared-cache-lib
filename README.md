@@ -40,3 +40,17 @@ kreiroa sam samo libray standalone libraray i puskao ga kao lokalni
 
   Te imamo i CacheHealtIndiciator:
    -> koji autimatski provjerava zdravlje za sve vrsta keša kojiega korsitimo pocomocu springboot acuator-a
+  
+ 
+ Redis cahce -> kada applikacija zatrazi spremanje i dohvat podatka iz redis-a:
+ 1. RedisTemplae -> RedisConfiguration se korsiit za direktno čitanje i pisanje u Redis-u
+ 2. RedisCacheManager -> "RedisCacheConfigurationHelper"  se korsiti za upravljanje keširanjem podatka na abstraktom sloju
+
+ Prednosti:
+
+ * RedisCacheManager - omogucava cache na najvisem nivou app
+ * RedisTemplate omogucava direktan pristup redis-u za posebne iperacije koje cacahe manager ne moze obraditi
+ * Modularsnot razdvajanje redis configuracije i naprednih strategija, promjene se mogu izvrsiti bez mjenjanja temeljne confgi
+ * performance i fleksibilnost
+
+
