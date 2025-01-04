@@ -1,13 +1,12 @@
 package com.shared.caching.sharedcachelib;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
-@RequiredArgsConstructor
 public class CacheEventListener {
+    private static final Logger log = LoggerFactory.getLogger(CacheEventListener.class);
 
     /** Ova klasa je ulazna točka događaja i ima samo jednu odgovorsnot
      * Prakticki sluzi kao "listener" za događaje vezane uz kesiranje
@@ -15,6 +14,10 @@ public class CacheEventListener {
      */
 
     private final CacheMetricsService metricsService;
+
+    public CacheEventListener(CacheMetricsService metricsService) {
+        this.metricsService = metricsService;
+    }
 
     // kada se dogodi cacheEVENT mis or hit prosljedujemo događaj
     public void onCacheEvent(CacheEvent cacheEvent) {

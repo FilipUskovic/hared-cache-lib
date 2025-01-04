@@ -1,6 +1,5 @@
 package com.shared.caching.sharedcachelib;
 
-import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.cache.Cache;
@@ -8,7 +7,6 @@ import org.springframework.cache.Cache;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 
-@RequiredArgsConstructor
 public class MonitoredCache implements Cache {
 
     /** Wrapper klasa oko postojeceg cache koji prati operacije nad cacheom korsiteci cacheMetrcis klasu
@@ -21,6 +19,11 @@ public class MonitoredCache implements Cache {
     private final String name;
     private final CacheMetricsService metricsService;
 
+    public MonitoredCache(Cache delegate, String name, CacheMetricsService metricsService) {
+        this.delegate = delegate;
+        this.name = name;
+        this.metricsService = metricsService;
+    }
 
 
     /* Centraliziran metoda za biljezenje hit i miss-a smanjuje dupliciranje get metoda

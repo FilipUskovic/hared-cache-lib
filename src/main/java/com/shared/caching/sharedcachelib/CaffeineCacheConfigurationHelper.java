@@ -3,8 +3,6 @@ package com.shared.caching.sharedcachelib;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tags;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;
 import org.springframework.cache.caffeine.CaffeineCache;
 import org.springframework.stereotype.Component;
@@ -14,8 +12,6 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component
-@RequiredArgsConstructor
-@Slf4j
 public class CaffeineCacheConfigurationHelper {
 
     /**
@@ -24,6 +20,11 @@ public class CaffeineCacheConfigurationHelper {
 
     private final CacheEventListener cacheEventListener;
     private final MeterRegistry meterRegistry;
+
+    public CaffeineCacheConfigurationHelper(CacheEventListener cacheEventListener, MeterRegistry meterRegistry) {
+        this.cacheEventListener = cacheEventListener;
+        this.meterRegistry = meterRegistry;
+    }
 
     /* stvara CustomCaffeineCacheManager korsiteci CacheEventListener s različitim strategijama (CacheStrategy)
            -> za korsitenej specificnih cache-a

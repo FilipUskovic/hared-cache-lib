@@ -2,8 +2,8 @@ package com.shared.caching.sharedcachelib;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tags;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -12,10 +12,9 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 
 @Service
-@RequiredArgsConstructor
-@Slf4j
 public class CacheMetricsService {
 
+   private static final Logger log = LoggerFactory.getLogger(CacheMetricsService.class);
    /**
     * Ovo je servis koji prati i bilježi upravljanje metrikama i stastiscima vezane za kesiranje
     * Cilj je osigurati pracejne performansi kesiranja kroz micrometer
@@ -24,13 +23,17 @@ public class CacheMetricsService {
     *
     */
 
-   private MeterRegistry meterRegistry;
+   private final MeterRegistry meterRegistry;
    // treads safe
    private final Map<String, AtomicLong> cacheHits = new ConcurrentHashMap<>();
    private final Map<String, AtomicLong> cacheMisses = new ConcurrentHashMap<>();
 
+    public CacheMetricsService(MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
+    }
 
-   public void recordMetrics(String metricName, String cacheName, Map<String, String> tags){
+
+    public void recordMetrics(String metricName, String cacheName, Map<String, String> tags){
       Tags micrometerTags = Tags.of(tags.entrySet().stream()
               .flatMap(entry -> Stream.of(entry.getKey(), entry.getValue()))
               .toArray(String[]::new));

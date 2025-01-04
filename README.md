@@ -53,4 +53,28 @@ kreiroa sam samo libray standalone libraray i puskao ga kao lokalni
  * Modularsnot razdvajanje redis configuracije i naprednih strategija, promjene se mogu izvrsiti bez mjenjanja temeljne confgi
  * performance i fleksibilnost
 
+ vizualni prikza bi izgledao ovako nekaok 
 
+        User Request
+    |
+    v
+ [CompositeCacheManager]
+|
+|----> [Caffeine Cache] (L1 - brza provjera)
+|            |      
+|            v      
+|       Cache Hit? (DA - vraća podatak)
+|            |      
+|           NE      
+|            |
+|            v
+|----> [Redis Cache] (L2 - provjera)
+|            |      
+|            v      
+|       Cache Hit? (DA - vraća podatak i stavlja u Caffeine)
+|            |      
+|           NE      
+|            |
+|            v
+|----> [DB / Service Call] (Spremi u Redis i Caffeine)
+            

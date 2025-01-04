@@ -33,34 +33,7 @@ dependencies {
 
 
 
-    annotationProcessor 'org.projectlombok:lombok:1.18.30'
-    compileOnly 'org.projectlombok:lombok:1.18.30'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus:1.14.2'
-
-    /*
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-cache'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    implementation 'org.hibernate.orm:hibernate-jcache:6.6.2.Final'
-    implementation 'org.ehcache:ehcache:3.10.8'
-    implementation 'org.springframework.boot:spring-boot-starter-cache'
-    implementation 'com.github.ben-manes.caffeine:caffeine'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'io.micrometer:micrometer-registry-prometheus:1.14.2'
-
-
-
-    annotationProcessor 'org.projectlombok:lombok'
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
-
-
-
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-     */
 }
 
 

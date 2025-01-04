@@ -1,13 +1,9 @@
 package com.shared.caching.sharedcachelib;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
-
 import java.util.Collection;
 
-
-@RequiredArgsConstructor
 public class MonitoredCacheManager implements CacheManager {
 
 
@@ -18,6 +14,10 @@ public class MonitoredCacheManager implements CacheManager {
     private final CacheManager delegate;
     private final CacheMetricsService metricsService;
 
+    public MonitoredCacheManager(CacheManager delegate, CacheMetricsService metricsService) {
+        this.delegate = delegate;
+        this.metricsService = metricsService;
+    }
 
 
     @Override
