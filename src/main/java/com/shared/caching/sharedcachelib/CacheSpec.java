@@ -4,7 +4,6 @@ import java.time.Duration;
 
 public record CacheSpec(
         // opisuje cache i korsiti builder pattern strategiju
-
         String name,
         long maxSize,
         Duration expireAfterWrite

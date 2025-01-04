@@ -11,7 +11,6 @@ public enum CacheStrategy {
     FREQUENT(CacheSpec.builder().name("frequent").maxSize(10_000).expireAfterWrite(Duration.ofMinutes(10)).build()),
     SEARCH(CacheSpec.builder().name("search").maxSize(1000).expireAfterWrite(Duration.ofMinutes(1)).build());
 
-
     private final CacheSpec spec;
 
     CacheStrategy(CacheSpec spec) {
