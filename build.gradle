@@ -1,8 +1,8 @@
 plugins {
-    id 'java'
+    id 'java-library' // omogućava korištenje api i implementation konfiguracija.
     id 'maven-publish'  // Dodaj maven-publish plugin za omogućavanje publish taska
-    id 'org.springframework.boot' version '3.4.1' apply(false) // jer nije samostalna springboot klasa
-    id 'io.spring.dependency-management' version '1.1.7'
+  //  id 'org.springframework.boot' version '3.4.1' apply(false) // jer nije samostalna springboot klasa
+   // id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.shared.caching'
@@ -21,23 +21,49 @@ repositories {
 
 dependencies {
 
+    api 'org.springframework.boot:spring-boot-starter-cache:3.4.1'
+    api 'org.springframework.boot:spring-boot-starter-data-redis:3.4.1'
+    api 'com.github.ben-manes.caffeine:caffeine:3.1.8'
+    api 'org.springframework.boot:spring-boot-starter-actuator:3.4.1'
+    api 'io.micrometer:micrometer-registry-prometheus:1.14.2'
+    api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
+
+    implementation 'org.hibernate.orm:hibernate-jcache:6.6.2.Final'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
+
+    /*
     implementation 'org.springframework.boot:spring-boot-starter-cache:3.4.1'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.4.1'
-    implementation 'org.hibernate.orm:hibernate-jcache:6.6.2.Final'
-    implementation 'org.ehcache:ehcache:3.10.8'
     implementation 'com.github.ben-manes.caffeine:caffeine:3.1.8'
     implementation 'org.springframework.boot:spring-boot-starter-actuator:3.4.1'
     implementation 'io.micrometer:micrometer-registry-prometheus:1.14.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.18.2'
-
+     implementation 'org.hibernate.orm:hibernate-jcache:6.6.2.Final'
+    implementation 'org.ehcache:ehcache:3.10.8'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
+    */
 
 
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus:1.14.2'
 }
 
+publishing {
+    publications {
+        create("mavenJava", MavenPublication) {
+            artifactId = 'caching-library'
+            groupId = 'com.shared.caching'
+            version = '0.0.1-SNAPSHOT'
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal() // Publikacija u lokalni Maven repozitorij
+    }
+}
 
 
+
+/*
 publishing { // definiram publishing jar
     publications {
         create("mavenJava", MavenPublication) {
@@ -48,3 +74,5 @@ publishing { // definiram publishing jar
         }
     }
 }
+
+ */

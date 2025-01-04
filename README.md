@@ -8,7 +8,14 @@
 
 kreiroa sam samo libray standalone libraray i puskao ga kao lokalni
 ./gradlew clean build publishToMavenLocal
+imam u grale u api umjesto implementations 
+ implementations zanci da -> ovisnost ostaje skrivena od projekata koje koriste implementaciju 
+ api znaci da -> visnost postaje viljdiva projektima koji koriste 
 
+ - našem slucaju trebamo api jer ce nasi user-service i courses-service treba pristup klasam 
+ - treaba pristup caffience i redis klasam za configruaciju
+ - treba pristup microMeter klasma i registirjema 
+  
 ./gradlew publishToMavenLocal
 
 
