@@ -38,4 +38,5 @@ kreiroa sam samo libray standalone libraray i puskao ga kao lokalni
   * Event lISTENER -> pracenje i logiranje evicitona pruza nam dodadni uvid u cache performance
 
 
-  
+  Te imamo i CacheHealtIndiciator:
+   -> koji autimatski provjerava zdravlje za sve vrsta keša kojiega korsitimo pocomocu springboot acuator-a
